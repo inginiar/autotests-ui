@@ -1,3 +1,6 @@
+import pytest
+
+
 def test_user_login():
     print("Hello!")
 
@@ -17,6 +20,7 @@ class TestUserLogin:
         assert (3 + 3) == 6
         assert (4 + 4) == 8
 
+    @pytest.mark.xfail
     def test_assert_negative_case(self):
         assert (2 + 2) == 6, "4 != 6"
 
