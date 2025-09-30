@@ -2,7 +2,7 @@ import pytest
 from playwright.sync_api import sync_playwright, expect
 
 
-@pytest.mark.autorization
+@pytest.mark.authorization
 @pytest.mark.regression
 def test_wrong_email_or_password_authorization():
     with sync_playwright() as playwright:
