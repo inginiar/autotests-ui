@@ -7,8 +7,8 @@ class CreateCoursePage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        self.create_curse_title = page.get_by_test_id('create-course-toolbar-title-text')
-        self.create_curse_button = page.get_by_test_id('create-course-toolbar-create-course-button')
+        self.create_course_title = page.get_by_test_id('create-course-toolbar-title-text')
+        self.create_course_button = page.get_by_test_id('create-course-toolbar-create-course-button')
 
         self.preview_image = page.get_by_test_id('create-course-preview-image-upload-widget-preview-image')
         self.preview_empty_view_icon = page.get_by_test_id('create-course-preview-empty-view-icon')
@@ -31,10 +31,12 @@ class CreateCoursePage(BasePage):
         self.preview_image_upload_input = page.get_by_test_id('create-course-preview-image-upload-widget-input')
 
         self.create_course_title_input = page.get_by_test_id('create-course-form-title-input').locator('input')
-        self.create_course_estimated_time_input = page.get_by_test_id(
-            'create-course-form-estimated-time-input').locator('input')
-        self.create_course_description_textarea = page.get_by_test_id('create-course-form-description-input').locator(
-            'textarea').first
+        self.create_course_estimated_time_input = (
+            page.get_by_test_id('create-course-form-estimated-time-input').locator('input')
+        )
+        self.create_course_description_textarea = (
+            page.get_by_test_id('create-course-form-description-input').locator('textarea').first
+        )
         self.create_course_max_score_input = page.get_by_test_id('create-course-form-max-score-input').locator('input')
         self.create_course_min_score_input = page.get_by_test_id('create-course-form-min-score-input').locator('input')
 
@@ -48,26 +50,26 @@ class CreateCoursePage(BasePage):
         )
 
     def check_visible_create_course_title(self):
-        expect(self.create_curse_title).to_be_visible()
-        expect(self.create_curse_title).to_have_text('Create course')
+        expect(self.create_course_title).to_be_visible()
+        expect(self.create_course_title).to_have_text('Create course')
 
     def click_create_course_button(self):
-        self.create_curse_button.click()
+        self.create_course_button.click()
 
-    def check_create_course_button(self):
-        expect(self.create_curse_button).to_be_visible()
+    def check_visible_create_course_button(self):
+        expect(self.create_course_button).to_be_visible()
 
     def check_disabled_create_course_button(self):
-        expect(self.create_curse_button).to_be_disabled()
+        expect(self.create_course_button).to_be_disabled()
 
     def check_visible_image_preview_empty_view(self):
-        expect(self.exercises_empty_view_icon).to_be_visible()
+        expect(self.preview_empty_view_icon).to_be_visible()
 
-        expect(self.exercises_empty_view_title).to_be_visible()
-        expect(self.exercises_empty_view_title).to_have_text('No image selected')
+        expect(self.preview_empty_view_title).to_be_visible()
+        expect(self.preview_empty_view_title).to_have_text('No image selected')
 
-        expect(self.exercises_empty_view_description).to_be_visible()
-        expect(self.exercises_empty_view_description).to_have_text(
+        expect(self.preview_empty_view_description).to_be_visible()
+        expect(self.preview_empty_view_description).to_have_text(
             'Preview of selected image will be displayed here'
         )
 
@@ -75,7 +77,9 @@ class CreateCoursePage(BasePage):
         expect(self.preview_image_upload_icon).to_be_visible()
 
         expect(self.preview_image_upload_title).to_be_visible()
-        expect(self.preview_image_upload_title).to_have_text('Tap on "Upload image" button to select file')
+        expect(self.preview_image_upload_title).to_have_text(
+            'Tap on "Upload image" button to select file'
+        )
 
         expect(self.preview_image_upload_description).to_be_visible()
         expect(self.preview_image_upload_description).to_have_text('Recommended file size 540X300')
@@ -144,10 +148,10 @@ class CreateCoursePage(BasePage):
         expect(self.exercises_title).to_be_visible()
         expect(self.exercises_title).to_have_text('Exercises')
 
-    def check_visible_create_exercises_button(self):
+    def check_visible_create_exercise_button(self):
         expect(self.create_exercise_button).to_be_visible()
 
-    def click_create_exercises_button(self):
+    def click_create_exercise_button(self):
         self.create_exercise_button.click()
 
     def check_visible_exercises_empty_view(self):
@@ -161,43 +165,42 @@ class CreateCoursePage(BasePage):
             'Click on "Create exercise" button to create new exercise'
         )
 
-    def click_delete_exercises_button(self, index: int):
-        delete_exercises_button = self.page.get_by_test_id(
-            f'create-course-exercise-{index}-box-toolbar-delete-exercise-button'
+    def click_delete_exercise_button(self, index: int):
+        delete_exercise_button = self.page.get_by_test_id(
+            f"create-course-exercise-{index}-box-toolbar-delete-exercise-button"
         )
-        delete_exercises_button.click()
+        delete_exercise_button.click()
 
     def check_visible_create_exercise_form(self, index: int, title: str, description: str):
-        exercises_subtitle = self.page.get_by_test_id(
-            f'create-course-exercise-{index}-box-toolbar-subtitle-text'
+        exercise_subtitle = self.page.get_by_test_id(
+            f"create-course-exercise-{index}-box-toolbar-subtitle-text"
         )
-        exercises_title_input = self.page.get_by_test_id(
+        exercise_title_input = self.page.get_by_test_id(
             f"create-course-exercise-form-title-{index}-input"
         )
-
-        exercises_description_input = self.page.get_by_test_id(
+        exercise_description_input = self.page.get_by_test_id(
             f"create-course-exercise-form-description-{index}-input"
         )
 
-        expect(exercises_subtitle).to_be_visible()
-        expect(exercises_subtitle).to_have_text(f"#{index + 1} Exercise")
+        expect(exercise_subtitle).to_be_visible()
+        expect(exercise_subtitle).to_have_text(f"#{index + 1} Exercise")
 
-        expect(exercises_title_input).to_be_visible()
-        expect(exercises_title_input).to_have_value(title)
+        expect(exercise_title_input).to_be_visible()
+        expect(exercise_title_input).to_have_value(title)
 
-        expect(exercises_description_input).to_be_visible()
-        expect(exercises_description_input).to_have_value(description)
+        expect(exercise_description_input).to_be_visible()
+        expect(exercise_description_input).to_have_value(description)
 
     def fill_create_exercise_form(self, index: int, title: str, description: str):
-        exercises_title_input = self.page.get_by_test_id(
+        exercise_title_input = self.page.get_by_test_id(
             f"create-course-exercise-form-title-{index}-input"
         )
-        exercises_description_input = self.page.get_by_test_id(
+        exercise_description_input = self.page.get_by_test_id(
             f"create-course-exercise-form-description-{index}-input"
         )
 
-        exercises_title_input.fill(title)
-        expect(exercises_title_input).to_have_value(title)
+        exercise_title_input.fill(title)
+        expect(exercise_title_input).to_have_value(title)
 
-        exercises_description_input.fill(description)
-        expect(exercises_description_input).to_have_value(description)
+        exercise_description_input.fill(description)
+        expect(exercise_description_input).to_have_value(description)
