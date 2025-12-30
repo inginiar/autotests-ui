@@ -5,7 +5,7 @@ from components.views.empty_view_component import EmptyViewComponent
 
 
 class ImageUploadWidgetComponent(BaseComponent):
-    def __init__(self, page: Page, identifier):
+    def __init__(self, page: Page, identifier: str):
         super().__init__(page)
 
         self.preview_empty_view = EmptyViewComponent(page, identifier)
