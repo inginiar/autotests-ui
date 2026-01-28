@@ -1,15 +1,27 @@
 import pytest
-
+import allure
+from tools.allure.tags import AllureTag
 from pages.authentication.login_page import LoginPage
 from pages.authentication.registration_page import RegistrationPage
 from pages.dashboard.dashboard_page import DashboardPage
+from tools.allure.epics import AllureEpic
+from tools.allure.stoies import AllureStory
+from tools.allure.features import AllureFeatures
+from allure_commons.types import Severity
 
 params = [("user.name@gmail.com", "password"), ("user.name@gmail.com", "  "), ("  ", "password")]
 
 
 @pytest.mark.authorization
 @pytest.mark.regression
-class TestAughorization:
+@allure.tag(AllureTag.REGRESSION, AllureTag.AUTHORIZATION)
+@allure.epic(AllureEpic.LMS)
+@allure.feature(AllureFeatures.AUTHENTICATION)
+@allure.story(AllureStory.AUTHORIZATION)
+class TestAuthorization:
+    @allure.tag(AllureTag.USER_LOGIN)
+    @allure.title('User login with correct email and password')
+    @allure.severity(Severity.BLOCKER)
     def test_successful_authorization(self,
                                       login_page: LoginPage,
                                       dashboard_page: DashboardPage,
@@ -32,6 +44,9 @@ class TestAughorization:
         dashboard_page.sidebar.check_visible()
 
     @pytest.mark.parametrize("email, password", params)
+    @allure.tag(AllureTag.USER_LOGIN)
+    @allure.title("User login with wrong email or password")
+    @allure.severity(Severity.CRITICAL)
     def test_wrong_email_or_password_authorization(self, login_page: LoginPage, email: str, password: str):
         login_page.visit("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login")
         login_page.login_form.fill(email=email, password=password)
@@ -39,6 +54,9 @@ class TestAughorization:
         login_page.clik_login_button()
         login_page.check_visible_wrong_email_or_password_alert()
 
+    @allure.tag(AllureTag.NAVIGATION)
+    @allure.title('Navigation from login page to registration page')
+    @allure.severity(Severity.NORMAL)
     def test_navigate_from_authorization_to_registration(
             self,
             login_page: LoginPage,
