@@ -18,6 +18,9 @@ params = [("user.name@gmail.com", "password"), ("user.name@gmail.com", "  "), ("
 @allure.epic(AllureEpic.LMS)
 @allure.feature(AllureFeatures.AUTHENTICATION)
 @allure.story(AllureStory.AUTHORIZATION)
+@allure.parent_suite(AllureEpic.LMS)
+@allure.suite(AllureFeatures.AUTHENTICATION)
+@allure.sub_suite(AllureStory.AUTHORIZATION)
 class TestAuthorization:
     @allure.tag(AllureTag.USER_LOGIN)
     @allure.title('User login with correct email and password')
