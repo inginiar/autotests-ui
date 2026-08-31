@@ -44,7 +44,7 @@ jobs:
         if: always()
         with:
           allure-results: allure-results
-          allure-history: allure-history
+          allure-history: allure-history #Комментарий
 
       - name: Deploy report to Github Pages
         if: always()  # Выполняется всегда, независимо от успеха других шагов
