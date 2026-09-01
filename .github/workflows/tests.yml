@@ -53,4 +53,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}  # Изменено с PERSONAL_TOKEN на github_token
           publish_branch: gh-pages
           publish_dir: allure-history
-          force_orphan: true  # ВАЖНО: создаёт ветку, если её нет
