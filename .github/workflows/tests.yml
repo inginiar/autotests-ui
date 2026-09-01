@@ -50,6 +50,6 @@ jobs:
         if: always()  # Выполняется всегда, независимо от успеха других шагов
         uses: peaceiris/actions-gh-pages@v4  # Используем GitHub Action для публикации отчёта на GitHub Pages
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}  # Изменено с PERSONAL_TOKEN на github_token
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-history
